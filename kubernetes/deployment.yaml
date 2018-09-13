@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-webapi-app
+spec:
+  selector:
+    matchLabels:
+      app: my-webapi-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-webapi-app
+    spec:
+      containers:
+      - name: my-webapi-app
+        image: registry9889.azurecr.io/api/my-webapi-app:1.0
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          initialDelaySeconds: 5
+          path: /health
+          periodSeconds: 5
+      imagePullSecrets:
+      - name: my-docker-creds
+¸

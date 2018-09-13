@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-webapi-app
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: my-webapi-app.02ba45c94eca4c49909b.eastus2.aksapp.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: my-webapi-app
+          servicePort: 80
